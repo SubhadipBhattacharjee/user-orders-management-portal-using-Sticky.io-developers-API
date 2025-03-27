@@ -18,18 +18,18 @@ Go through the `webserver.config` folder where you will get details about deploy
 - **Profile Management:-** Update and manage personal information.​
 - **Cancel Subscriptions:-** Empower users to cancel their active subscriptions.​
 GitHub Docs
-- **Real-Time Data Fetching:-** Dynamically retrieve data from the Sticky.io API.​
+- **Real-Time Data Fetching:-** Dynamically retrieve data from the `Sticky.io API`.​
 - **Security Measures:-** Authenticate API interactions using Sticky.io credentials.​
-- **User-Friendly Interface:-** Enhance user experience with JS DataTable, SweetAlert, and jQuery.​
+- **User-Friendly Interface:-** Enhance user experience with `JS DataTable`, `SweetAlert2`, and `jQuery`.​
 - **Lightweight & Fast:-** Operate without a database; purely API-driven for swift responses.​
 Stack Overflow
 - **Error Handling:-** Implement robust API error handling and provide clear user feedback.​
 
 ## Tech Stack
-- **Backend :-**  PHP (Core PHP, OOP Architecture)
-- **UI/UX :-**  HTML , CSS , Bootstrap, JavaScript (jQuery, DataTables, SweetAlert2)
-- **3rd Party API :-**  Sticky.io Developer API (For fetching and updating user data)
-- **API Communication :-**  cURL & JSON Parsing (For API communication).
+- **Backend :-**  `PHP` (Core PHP, OOP Architecture)
+- **UI/UX :-**  `HTML` , `CSS` , `Bootstrap`, `JavaScript` (jQuery, DataTables, SweetAlert2)
+- **3rd Party API :-**  `Sticky.io Developer API` (For fetching and updating user data)
+- **API Communication :-**  `cURL` & `JSON Parsing` (For API communication).
 
 
 
