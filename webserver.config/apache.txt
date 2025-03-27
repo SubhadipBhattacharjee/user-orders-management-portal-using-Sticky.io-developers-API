@@ -1,0 +1,40 @@
+If you are using Apache as webserver then make .htaccess file and add the following contents in order to redirect all the request into the index.php (basic routing file) file. Place the .htaccess file to the root of the project folder.
+
+START>>>>
+
+RewriteEngine On
+
+# If the requested file does not exist AND it's not a directory, rewrite the URL
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+END>>>
+
+Explanation(exclude from .htaccess)
+===================================
+
+RewriteCond %{REQUEST_FILENAME} !-f
+------------------------------------
+
+   REQUEST_FILENAME is the full path of the requested file.
+   !-f means "if the file does NOT exist".
+   This prevents redirection if a real file (e.g., style.css or script.js) exists.
+
+RewriteCond %{REQUEST_FILENAME} !-d
+-------------------------------------
+
+   REQUEST_FILENAME checks if the requested path is a directory.
+   !-d means "if the directory does NOT exist".
+   This prevents redirection for actual directories.
+
+RewriteRule ^(.*)$ index.php [QSA,L]
+-------------------------------------
+
+^(.*)$ → Captures any URL path.
+index.php → Routes the request to index.php if it's not an existing file or directory.
+[QSA,L] (flags) →
+
+    QSA (Query String Append) → Keeps existing query parameters.
+    L (Last Rule) → Stops further processing if this rule is matched.
+

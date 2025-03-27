@@ -1,0 +1,38 @@
+For "nginx" the default configuration file is "nginx.conf". You can find this file into either of these locations
+
+1. "/etc/nginx/sites-available/default"
+2. "etc/nginx"
+3. "usr/local/nginx/conf"
+4. "/usr/local/etc/nginx"
+
+
+In order to redirect all the request coming to the server into the "index.php"(basic routing file) locate the desired file and change the configuration like this.
+
+START>>>
+
+server {
+    listen 80;
+    server_name example.com;
+    root /path/to/your/project;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php-fpm.sock; # Adjust for your setup
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}
+
+END>>>
+
+Explanation
+============
+1. The "try_files" directive tells the server that for any request to the URI that matches the block in the location, try the "$uri (or $uri/)" first, and if the file is present, serve the file. Otherwise, the fallback option (index.php) is used. And this last behavior is what we want.
+
+2. The fastcgi_pass line should match your PHP-FPM configuration.
+
