@@ -13,7 +13,4 @@ if(!$auth->isLoggedIn()){
     exit();
 }
 
-
-
-
 ?>
