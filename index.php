@@ -1,6 +1,6 @@
 <?php 
 
-//-----Basic Routing for redirection of URI on matching-----//
+//-----Basic Routing for redirection based on URI matching-----//
 $request = $_SERVER['REQUEST_URI'];
 $viewDir = 'views/';
 
