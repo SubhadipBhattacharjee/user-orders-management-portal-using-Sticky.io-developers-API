@@ -1,13 +1,13 @@
 <?php 
-require_once __DIR__.'/controllers/Subscription.php';
-require_once __DIR__.'/controllers/Account.php';
-require_once __DIR__.'/controllers/Auth.php';
+require_once __DIR__.'/../controllers/Subscription.php';
+require_once __DIR__.'/../controllers/Account.php';
+require_once __DIR__.'/../controllers/Auth.php';
 
 
     $auth = new Auth();
 
     if(!$auth->isLoggedIn()){
-        header("Location: index.php");
+        header("Location:" . BASE_URL . "/");
         exit();
     }else{
         $subs = new Subscription();
@@ -194,7 +194,7 @@ require_once __DIR__.'/controllers/Auth.php';
             <div class="drawer_main">
                 <div class="each_sec p-4">
                     <h4 class="cmn_head">Next Recurring Date</h4>
-                    <form action="subscriptions.php" id="change_rec_form" method="POST">
+                    <form action="<?= BASE_URL . "/subscribed-orders" ?>" id="change_rec_form" method="POST">
                         <div class="calendar-container mt-5">
                             <div class="calendar-header mx-auto">
                                 <button type="button" id="prev-month"><i class="fa-solid fa-angle-left"></i></button>
@@ -289,7 +289,7 @@ require_once __DIR__.'/controllers/Auth.php';
                     </div>
                     <p class="text-dark mt-3 show_text"><?php echo $detail['products'][0]['subscription_desc']; ?></p>
                     <div class="drawer_form frequency_form mt-3" id="<?= $orderId; ?>freqForm" style="display: none;">
-                        <form action="subscriptions.php" method="POST">
+                        <form action="<?= BASE_URL . "/subscribed-orders" ?>" method="POST">
                             <select name="bill_model" id="" class="w-100 mb-4">
                                 <option value="">Please select a billing..</option>
                                    <?php if(isset($billing_model)){
@@ -324,7 +324,7 @@ require_once __DIR__.'/controllers/Auth.php';
                         <p class="text-dark mt-2 mb-0"><?php echo $detail['shipping_country']; ?></p>
                     </div>
                     <div class="drawer_form delivery_form mt-3" id="<?= $orderId; ?>delForm" style="display: none;">
-                        <form action="subscriptions.php" method="POST">
+                        <form action="<?= BASE_URL . "/subscribed-orders" ?>" method="POST">
                             <div class="each_input mb-4">
                                 <label for="" class="d-block mb-2">Address Line 1</label>
                                 <input type="text" name="sh_add1" value="<?php echo $detail['shipping_street_address']; ?>" required>
@@ -388,7 +388,7 @@ require_once __DIR__.'/controllers/Auth.php';
                         <p class="text-dark mt-2 mb-0"><?= $detail['billing_country']; ?></p>
                     </div>
                     <div class="drawer_form billing_form mt-3" id="<?= $orderId; ?>billForm" style="display: none;">
-                        <form action="subscriptions.php" method="POST">
+                        <form action="<?= BASE_URL . "/subscribed-orders" ?>" method="POST">
                             <div class="each_input mb-4">
                                 <label for="" class="d-block mb-2">Address Line 1</label>
                                 <input type="text" name="b_add1" value="<?= $detail['billing_street_address']; ?>" required>
@@ -459,7 +459,7 @@ require_once __DIR__.'/controllers/Auth.php';
                     </div>
 
                     <div class="drawer_form payment_form mt-3" id="<?= $orderId; ?>payForm" style="display: none;">
-                        <form action="subscriptions.php" method="POST">
+                        <form action="<?= BASE_URL . "/subscribed-orders" ?>" method="POST">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="each_input mb-4">
@@ -548,7 +548,7 @@ require_once __DIR__.'/controllers/Auth.php';
                         <?php }} ?>
                         <p class="mb-0 ms-2 text-dark"><?= $detail['products'][0]['name']; ?></p>
                     </div>
-                    <form action="subscriptions.php" id="pause_subs_form" method="POST">
+                    <form action="<?= BASE_URL . "/subscribed-orders" ?>" id="pause_subs_form" method="POST">
                         <!-- <div class="each_input d-flex align-items-center position-relative">
                             <input type="radio" class="w-auto">
                             <i></i>

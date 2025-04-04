@@ -1,5 +1,8 @@
 <?php 
-require_once __DIR__ . '/controllers/Auth.php' ;
+# "dirname(__DIR__)" Moves one level up from the current directory.
+//require_once dirname(__DIR__) . '/controllers/Auth.php'; 
+require_once __DIR__ . '/../controllers/Auth.php';
+require_once __DIR__.'/../config/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -7,6 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $email = trim($_POST["email"]);
     $pass = trim($_POST["password"]);
+
+    //echo $email; echo $pass; die();
 
     $data = $auth->login($email,$pass);     
 }
@@ -100,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                     ?>
                     <h2 class="text-center text-dark">Members Sign In</h2>
-                    <form action="index.php" method="POST">
+                    <form action="<?= BASE_URL . "/" ?>" method="POST">
                         <div class="each_input">
                             <label for="email" class="d-block">Email</label>
                             <input type="email" name="email" required>
@@ -111,9 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <i class="fa-solid fa-eye position-absolute eye_btn" id="eye_btn" toggle=".password_field"></i>
                         </div>
                         <div class="each_input mt-3 d-flex justify-content-between align-items-center">
-                            <p class="forgot_link"><a href="forgetpass.php"
+                            <p class="forgot_link"><a href="<?= BASE_URL .'/forget-password' ?>"
                                     class="text-decoration-underline">Forgot/Generate Password</a></p>
-                            <p class="forgot_link"><a href="resetPass.php"
+                            <p class="forgot_link"><a href="<?= BASE_URL .'/reset-password' ?>"
                                     class="text-decoration-underline">Reset Password</a></p>
                         </div>
                         <div class="each_input">

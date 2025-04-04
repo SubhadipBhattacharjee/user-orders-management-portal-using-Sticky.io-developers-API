@@ -1,3 +1,6 @@
+<?php 
+require_once __DIR__.'/../../config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +70,7 @@
                 <div class="user_sec position-relative">
                     <i class="fa-solid fa-circle-user text-white"></i>
                     <ul class="mt-3">
-                        <li><a href="account.php"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li><a href="member-profile"><i class="fa-solid fa-user"></i> Profile</a></li>
                         <li id="log_out"><a href="#"><i class="fa-solid fa-right-from-bracket"></i>Logout</a></li>
                     </ul>
                 </div>
@@ -93,14 +96,14 @@
                             <a href="shipment.php">Next Shipment</a>
                         </li> -->
                         <li class="<?php echo (strpos($uri, "subscriptions.php") !== false) ? "active" : "" ?>" >
-                            <a href="subscriptions.php">Orders & Subscriptions</a>
+                            <a href="subscribed-orders">Orders & Subscriptions</a>
                         </li>
                         <li class="<?php echo (strpos($uri, "orders.php") !== false) ? "active" : "" ?>" >
-                            <a href="orders.php">Order History</a>
+                            <a href="order-history">Order History</a>
                         </li>
                         <!-- <li><a href="request.html">Requests</a></li> -->
                         <li class="<?php echo (strpos($uri, "account.php") !== false) ? "active" : "" ?>" >
-                            <a href="account.php">My Account</a>
+                            <a href="member-profile">My Account</a>
                         </li>
                     </ul>
                 </nav>

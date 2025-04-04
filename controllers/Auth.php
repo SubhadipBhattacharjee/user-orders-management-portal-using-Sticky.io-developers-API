@@ -1,5 +1,7 @@
 <?php 
 if(session_status() === PHP_SESSION_NONE) session_start();
+require_once __DIR__.'/../config/config.php';
+
 require_once __DIR__ . '/Webhook.php';
 
 class Auth{
@@ -30,6 +32,7 @@ class Auth{
 
             $login_details = $this->webhook->cURl_POST($url,$data);
             $login_data = json_decode($login_details,true);
+            //print_r($login_data);
             $login_resp = $login_data['response_code'];
 
             if(isset($login_resp) && $login_resp == "100"){
@@ -39,7 +42,7 @@ class Auth{
                     "email" => $login_data['data']['email'],
                     "token" => $login_data['data']['member_token'],
                 ];
-                header("location:account.php");  
+                header("location:" . BASE_URL . "/member-profile");  
                 exit();
             }else{
                 if(isset($login_data['response_message'])){
@@ -66,7 +69,7 @@ class Auth{
         ];
 
         $logout_details = $this->webhook->cURl_POST($url,$data);
-        $logout_data = json_encode($logout_details,true);
+        $logout_data = json_decode($logout_details,true);
 
         $logout_resp = $logout_data['response_code'];
         $resp_msg = $logout['response_message'];
@@ -77,7 +80,7 @@ class Auth{
             session_destroy(); // Destroy the session
             setcookie(session_name(), '', time() - 3600, '/'); // Delete session cookie
 
-            header("Location: index.php");
+            header("Location: " .BASE_URL. "/");
             exit();
         }
     }

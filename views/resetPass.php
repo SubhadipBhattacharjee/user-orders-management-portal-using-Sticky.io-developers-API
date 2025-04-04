@@ -1,5 +1,7 @@
 <?php 
-require_once __DIR__.'/controllers/Auth.php';
+require_once __DIR__.'/../controllers/Auth.php';
+require_once __DIR__.'/../config/config.php';
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -13,10 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resp_data = json_decode($resp,true);
     $resp_code = $resp_data['response_code'];
 
-    //$msg = '';
     if(isset($resp_code) && $resp_code == '100' ){
         $_SESSION['message'] = "Password successfully updated";
-        header("Location: index.php");
+        header("Location: " . BASE_URL . "/");
     }elseif(isset($resp_data['response_message'])){
         $_SESSION['error'] = $resp_data['response_message'];
     }
@@ -107,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo $msg ;
                     }
                     ?>
-                    <form action="resetPass.php" method="POST">
+                    <form action="<?= BASE_URL . "/reset-password" ?>" method="POST">
                         <div class="each_input position-relative">
                             <label for="password" class="d-block">Email</label>
                             <input type="email" name="email" class="" required>
@@ -130,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div> -->
                         <div class="each_input">
                             <input type="submit" class="login_btn text-white" value="Change Password">
-                            <a href="index.php"
+                            <a href="<?= BASE_URL.'/' ?>"
                                 class="back_sign_btn w-100 d-block text-center text-dark mt-2">Back to Sign
                                 In</a>
                         </div>

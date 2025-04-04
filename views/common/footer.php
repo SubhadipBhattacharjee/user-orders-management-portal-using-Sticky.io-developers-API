@@ -6,7 +6,7 @@
             <p>Are you sure you want to logout?</p>
             <div class="pop_btn_sec px-3 py-4 text-end">
                 <a href="javascript:void(0);" class="cancel_btn text-dark">Cancel</a>
-                <a href="logout.php" class="popup_btn text-white ms-3">Logout</a>
+                <a href="<?= BASE_URL .'/logout' ?>" class="popup_btn text-white ms-3">Logout</a>
             </div>
         </div>
     </div>
@@ -20,31 +20,32 @@
     <script>
         let table = new DataTable('#myTable');
     </script>
-    <?php
-        if (isset($_SESSION['message'])) {
-            echo "<script>
-                Swal.fire({
-                    title: 'Success!',
-                    text: "{$_SESSION['message']}",
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
-            </script>";
-            unset($_SESSION['message']); // Clear session after showing message
-        }
 
-        if (isset($_SESSION['error'])) {
-            echo "<script>
-                Swal.fire({
-                    title: "Error!",
-                    text: "{$_SESSION['error']}",
-                    icon: "error",
-                    confirmButtonText: "OK"
-                });
-            </script>";
-            unset($_SESSION['error']); // Clear session after showing message
-        }
-    ?>
+    <script>
+
+        <?php if (isset($_SESSION['message'])): ?>
+            Swal.fire({
+                title: 'Success!',
+                text: <?= json_encode($_SESSION['message']) ?>,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            <?php unset($_SESSION['message']); ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['error'])): ?>
+            Swal.fire({
+                title: 'Success!',
+                text: <?= json_encode($_SESSION['error']) ?>,
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+
+    </script>
+
+    
     <script>
         //======================= For Request Page Date Picker
         $(function () {

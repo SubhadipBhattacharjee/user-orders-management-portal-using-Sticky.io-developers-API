@@ -1,13 +1,15 @@
 <?php 
-require_once __DIR__.'/controllers/Account.php'; 
-require_once __DIR__.'/controllers/Member.php';
-require_once __DIR__.'/controllers/Auth.php';
+require_once __DIR__.'/../config/config.php';
+
+require_once __DIR__.'/../controllers/Account.php'; 
+require_once __DIR__.'/../controllers/Member.php';
+require_once __DIR__.'/../controllers/Auth.php';
 
 
     $auth = new Auth();
 
     if(!$auth->isLoggedIn()){
-        header("Location: index.php");
+        header("Location:" . BASE_URL . "/");
         exit();
     }else{
 
@@ -78,7 +80,7 @@ require_once __DIR__.'/controllers/Auth.php';
                             </div>
                             <div id="login" class="tab_content login_tab active_tab">
 
-                                  <form action="account.php" id="login_security_form" method="POST">
+                                  <form action="<?= BASE_URL . "/member-profile" ?>" id="login_security_form" method="POST">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <h4 class="m-0">My Profile</h4>
                                         <p class="m-0"><a href="javascript:void(0);" class="text-dark" id="edit_profile">Edit Profile</a></p>
@@ -123,7 +125,7 @@ require_once __DIR__.'/controllers/Auth.php';
                                 <?php } ?>
 
                                     
-                                <form action="account.php" method="POST">
+                                <form action="<?= BASE_URL . "/member-profile" ?>" method="POST">
                                     <div class="row mt-3 mt-md-5">
                                         <h4 class="mb-4">Change Password</h4>
                                         <div>
@@ -324,7 +326,7 @@ require_once __DIR__.'/controllers/Auth.php';
             <div class="drawer_main">
 
                 <?php if(isset($orders)){ ?> 
-                <form action="account.php" method="POST">
+                <form action="<?= BASE_URL . "/member-profile" ?>" method="POST">
                     <div class="row card_info p-4 border-bottom border-1 border-dark">
                         <h5 class="cmn_head mb-3">Card Information</h5>
                         <div class="col-md-12">

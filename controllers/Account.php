@@ -1,4 +1,6 @@
 <?php 
+require_once __DIR__.'/../config/config.php';
+
 require_once __DIR__ . '/Webhook.php';
 require_once __DIR__ . '/Member.php';
 
@@ -141,7 +143,6 @@ class Account{
                 ];
         }
         return $orderRecords;
-
     }
 
     //-----Fetching all(Subscription & One time Purchase) filtered orders------//
@@ -177,9 +178,8 @@ class Account{
                         "discount" => $order_data['data'][$orderId]['coupon_discount_amount'],
                         "quantity" => $order['product_qty'],
                         "price" => $order['price'],
-                        "order_date" =>$order['acquisition_date'],
+                        "order_date" =>date("F j, Y", strtotime($order_date)),
                         "ship_amount" => $order_data['data'][$orderId]['shipping_amount'],
-                        "order_date" => date("F j, Y", strtotime($order_date)),
                         "total_price" =>$order_data['data'][$orderId]['totals_breakdown']['total'] ,
                         "email" => $order_data['data'][$orderId]['email_address'],
                         "phone" => $order_data['data'][$orderId]['customers_telephone'],
@@ -214,7 +214,7 @@ class Account{
                     "product_name" => $order['name'],
                     "quantity" => $order_data['main_product_quantity'],
                     "price" => $order['price'],
-                    "order_date" => date("F j, Y", strtotime($order_data['time_stamp'])),
+                    "order_date" => date("F j, Y", strtotime($order['time_stamp'])),
                     //"order_date" =>date("F j, Y", strtotime($order_data['acquisition_date'])), 
                     "ship_amount" => $order_data['shipping_amount'],
                     "email" => $order_data['email_address'],

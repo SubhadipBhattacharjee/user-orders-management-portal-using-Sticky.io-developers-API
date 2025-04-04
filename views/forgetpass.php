@@ -1,6 +1,7 @@
 <?php
 if(session_status() === PHP_SESSION_NONE) session_start();
-require_once __DIR__ . '/controllers/Auth.php' ;
+require_once __DIR__.'/../config/config.php';
+require_once __DIR__ . '/../controllers/Auth.php' ;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -15,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['temp_password'] = $respData['data']['temp_password'];
         $_SESSION['message'] = "Check your email & reset your password..";
 
-        header("location:resetPass.php");
+        header("location: " . BASE_URL . "/reset-password");
         exit();
     }else{
         $_SESSION['error'] = $respData["response_message"];
@@ -108,14 +109,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     ?>
                     <h2 class="text-center text-dark">Reset Your Password</h2>
                     <p class="text-dark mt-4 mb-0">Enter your email and we'll send you a temporary password </p>
-                    <form action="forgetpass.php" method="POST">
+                    <form action="<?= BASE_URL . "/forget-password" ?>" method="POST">
                         <div class="each_input">
                             <label for="email" class="d-block">Email</label>
                             <input type="email" name="regis_email" required>
                         </div>
                         <div class="each_input">
                             <input type="submit" class="login_btn text-white" value="Submit">
-                            <a href="index.php"
+                            <a href="<?= BASE_URL.'/' ?>"
                                 class="back_sign_btn w-100 d-block text-center text-dark mt-2">Back to Sign
                                 In</a>
                         </div>

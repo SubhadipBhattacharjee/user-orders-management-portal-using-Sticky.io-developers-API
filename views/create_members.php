@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/controllers/Member.php';
+require_once __DIR__ . '/../controllers/Member.php';
 
     //-----member_creation through Postback URL from Sticky.io CRM-----//
     $member = new Member();

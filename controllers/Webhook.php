@@ -7,8 +7,8 @@ class cURL{
 
     function __construct(){
         //------Sticky Credentials------//
-        $this->un_sticky = '';
-        $this->pw_sticky = '';
+        $this->un_sticky = 'highline_10919';
+        $this->pw_sticky = '0afbfbb4453f13';
     }
 
     public function cURL_POST($url,$data,$method="POST"){

@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# If the requested file does not exist AND it's not a directory, rewrite the URL
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# If project is in sub-directory
+# ^project2/(.*)$ /project2/index.php [QSA,L]

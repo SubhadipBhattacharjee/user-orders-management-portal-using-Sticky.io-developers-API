@@ -1,11 +1,11 @@
 <?php 
-require_once __DIR__.'/controllers/Account.php';
-require_once __DIR__.'/controllers/Auth.php';
+require_once __DIR__.'/../controllers/Account.php';
+require_once __DIR__.'/../controllers/Auth.php';
 
     $auth = new Auth();
 
     if(!$auth->isLoggedIn()){
-        header("Location: index.php");
+        header("Location:" . BASE_URL . "/");
         exit();
     }else{
 
@@ -183,7 +183,7 @@ require_once __DIR__.'/controllers/Auth.php';
                             <div class="each_list bg-white p-4 d-flex justify-content-between align-items-center">
                                 <div class="content_sec">
                                     <h3>Order Date</h3>
-                                    <h6><?= $odr['order_date']; ?></h6>
+                                    <h6><?= $order['order_date']; ?></h6>
                                 </div>
                                 <div class="icon_sec">
                                     <i class="fa-regular fa-calendar-days"></i>
@@ -210,7 +210,7 @@ require_once __DIR__.'/controllers/Auth.php';
                             <div class="each_list bg-white p-4 d-flex justify-content-between align-items-center">
                                 <div class="content_sec">
                                     <h3>Email</h3>
-                                    <h6><?= $odr['email']; ?></h6>
+                                    <h6><?= $order['email']; ?></h6>
                                 </div>
                                 <div class="icon_sec">
                                     <i class="fa-solid fa-envelope"></i>
@@ -219,7 +219,7 @@ require_once __DIR__.'/controllers/Auth.php';
                             <div class="each_list bg-white p-4 d-flex justify-content-between align-items-center">
                                 <div class="content_sec">
                                     <h3>Phone</h3>
-                                    <h6><?= $odr['phone']; ?></h6>
+                                    <h6><?= $order['phone']; ?></h6>
                                 </div>
                                 <div class="icon_sec">
                                     <i class="fa-solid fa-phone"></i>
@@ -228,9 +228,9 @@ require_once __DIR__.'/controllers/Auth.php';
                             <div class="each_list bg-white p-4 d-flex justify-content-between align-items-center">
                                 <div class="content_sec">
                                     <h3>Delivery Address | <span class="text-dark">Billing Address</span></h3>
-                                    <h6><?= $odr['add1']; ?></h6>
-                                    <h6><?= $odr['add2']; ?>,<?= $odr['state']; ?>, <?= $odr['pin']; ?></h6>
-                                    <h6><?= $odr['country']; ?></h6>
+                                    <h6><?= $order['add1']; ?></h6>
+                                    <h6><?= $order['add2']; ?>,<?= $order['state']; ?>, <?= $order['pin']; ?></h6>
+                                    <h6><?= $order['country']; ?></h6>
                                 </div>
                                 <div class="icon_sec">
                                     <i class="fa-solid fa-location-dot"></i>
