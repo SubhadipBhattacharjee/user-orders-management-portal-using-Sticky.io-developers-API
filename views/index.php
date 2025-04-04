@@ -11,8 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = trim($_POST["email"]);
     $pass = trim($_POST["password"]);
 
-    //echo $email; echo $pass; die();
-
     $data = $auth->login($email,$pass);     
 }
 
