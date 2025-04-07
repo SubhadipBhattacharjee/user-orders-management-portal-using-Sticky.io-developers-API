@@ -18,7 +18,6 @@ Go through the `webserver.config` folder where you will get details about deploy
 - **Order Management:-** Monitor and track subscription-based orders.​
 - **Profile Management:-** Update and manage personal information.​
 - **Cancel Subscriptions:-** Empower users to cancel their active subscriptions.​
-GitHub Docs
 - **Real-Time Data Fetching:-** Dynamically retrieve data from the `Sticky.io API`.​
 - **Security Measures:-** Authenticate API interactions using Sticky.io credentials.​
 - **User-Friendly Interface:-** Enhance user experience with `JS DataTable`, `SweetAlert2`, and `jQuery`.​
