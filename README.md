@@ -13,6 +13,7 @@ Go through the `webserver.config` folder where you will get details about deploy
 - **JSON/REST API v2:-** https://developer-v2.sticky.io
 
 ## Features
+- **Member Creation :-** upon order placad on the main site member is created and email with login credentials and member portal link is sent.
 - **Subscription Management:-** View, edit, and adjust subscription dates and frequencies.​
 - **Order Management:-** Monitor and track subscription-based orders.​
 - **Profile Management:-** Update and manage personal information.​
@@ -22,7 +23,6 @@ GitHub Docs
 - **Security Measures:-** Authenticate API interactions using Sticky.io credentials.​
 - **User-Friendly Interface:-** Enhance user experience with `JS DataTable`, `SweetAlert2`, and `jQuery`.​
 - **Lightweight & Fast:-** Operate without a database; purely API-driven for swift responses.​
-Stack Overflow
 - **Error Handling:-** Implement robust API error handling and provide clear user feedback.​
 
 ## Tech Stack
