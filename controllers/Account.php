@@ -111,27 +111,35 @@ class Account{
                 $prod_id = $order_data['data'][$orderId]['products'][0]['product_id'];
                 $hold = $order_data['data'][$orderId]['on_hold']; // 1 for subscription stop
 
-                $orderRecords[] = [
-                    "order_id" => $orderId,
-                    "prod_id" => $prod_id ,
-                    "product_name" => $product_name,
-                    "total_price" => $order_price ,
-                    "is_recur" => $order_data['data'][$orderId]['products'][0]['is_recurring'],
-                    "recurring_date" => date("F j, Y", strtotime($recurring_date)),
-                    "recurring_freq" => $recurring_freq,
-                    "hold" => $hold ,
-                    "status" => $order_status,
-                    "subscription_id" => $subscription_id
-                ];
+                if($prod_id >= 55 && $prod_id <= 106){
+
+                    $orderRecords[] = [
+                        "order_id" => $orderId,
+                        "prod_id" => $prod_id ,
+                        "product_name" => $product_name,
+                        "total_price" => $order_price ,
+                        "is_recur" => $order_data['data'][$orderId]['products'][0]['is_recurring'],
+                        "recurring_date" => date("F j, Y", strtotime($recurring_date)),
+                        "recurring_freq" => $recurring_freq,
+                        "hold" => $hold ,
+                        "status" => $order_status,
+                        "subscription_id" => $subscription_id
+                    ];
+
+                }
+                
 
             }
 
         }else{
 
-                $order_status = $this->order_status($order_data['order_status']);
+            $prod_id = $order_data['products'][0]['product_id'];
+            $order_status = $this->order_status($order_data['order_status']);
+
+            if($prod_id >=55 && $prod_id <= 106){
                 $orderRecords[] = [
                     "order_id" => $order_data['order_id'],
-                    "prod_id" => $order_data['products'][0]['product_id'],
+                    "prod_id" => $prod_id ,
                     "product_name" => $order_data['products'][0]['name'],
                     "total_price" => $order_data['order_total'],
                     "is_recur" => $order_data['products'][0]['is_recurring'],
@@ -141,6 +149,7 @@ class Account{
                     "status" => $order_status,
                     "subscription_id" => $order_data['products'][0]['subscription_id']
                 ];
+            }       
         }
         return $orderRecords;
     }
@@ -165,31 +174,35 @@ class Account{
                 
                 foreach($allOrders as $key=>$order){
 
-                    $orderRecords[] = [
-                        "key" => $key+1 ,
-                        "order_id" => $orderId,
-                        "prod_id" => $order['product_id'],
-                        "subscription_id" => $order['subscription_id'],
-                        "product_name" => $order['name'],
-                        "recurring_date" => $order['recurring_date'] ,
-                        "recurring_freq" => $order['billing_model']['description'],
-                        "sub_total" => $order_data['data'][$orderId]['totals_breakdown']['subtotal'],
-                        "tax" => $order_data['data'][$orderId]['totals_breakdown']['tax'],
-                        "discount" => $order_data['data'][$orderId]['coupon_discount_amount'],
-                        "quantity" => $order['product_qty'],
-                        "price" => $order['price'],
-                        "order_date" =>date("F j, Y", strtotime($order_date)),
-                        "ship_amount" => $order_data['data'][$orderId]['shipping_amount'],
-                        "total_price" =>$order_data['data'][$orderId]['totals_breakdown']['total'] ,
-                        "email" => $order_data['data'][$orderId]['email_address'],
-                        "phone" => $order_data['data'][$orderId]['customers_telephone'],
-                        "add1" => $order_data['data'][$orderId]['shipping_street_address'],
-                        "add2" => $order_data['data'][$orderId]['shipping_street_address2'],
-                        "pin" => $order_data['data'][$orderId]['billing_postcode'],
-                        "state" => $order_data['data'][$orderId]['billing_state'],
-                        "country" => $order_data['data'][$orderId]['billing_country'],
-                        "status" => $order_status
-                    ];
+                    $prod_id = $order['product_id'];
+                    if($prod_id >= 55 && $prod_id <= 106){
+
+                        $orderRecords[] = [
+                            "key" => $key+1 ,
+                            "order_id" => $orderId,
+                            "prod_id" => $order['product_id'],
+                            "subscription_id" => $order['subscription_id'],
+                            "product_name" => $order['name'],
+                            "recurring_date" => $order['recurring_date'] ,
+                            "recurring_freq" => $order['billing_model']['description'],
+                            "sub_total" => $order_data['data'][$orderId]['totals_breakdown']['subtotal'],
+                            "tax" => $order_data['data'][$orderId]['totals_breakdown']['tax'],
+                            "discount" => $order_data['data'][$orderId]['coupon_discount_amount'],
+                            "quantity" => $order['product_qty'],
+                            "price" => $order['price'],
+                            "order_date" =>date("F j, Y", strtotime($order_date)),
+                            "ship_amount" => $order_data['data'][$orderId]['shipping_amount'],
+                            "total_price" =>$order_data['data'][$orderId]['totals_breakdown']['total'] ,
+                            "email" => $order_data['data'][$orderId]['email_address'],
+                            "phone" => $order_data['data'][$orderId]['customers_telephone'],
+                            "add1" => $order_data['data'][$orderId]['shipping_street_address'],
+                            "add2" => $order_data['data'][$orderId]['shipping_street_address2'],
+                            "pin" => $order_data['data'][$orderId]['billing_postcode'],
+                            "state" => $order_data['data'][$orderId]['billing_state'],
+                            "country" => $order_data['data'][$orderId]['billing_country'],
+                            "status" => $order_status
+                        ];
+                    }
                 }
 
             }
@@ -201,33 +214,37 @@ class Account{
 
             foreach($allOrders as $key=>$order){
 
-                $orderRecords[] = [
-                    "key" => $key+1 ,
-                    "order_id" => $order_data['order_id'],
-                    "recurring_date" => $order['recurring_date'],
-                    "subscription_id" => $order['subscription_id'],
-                    "recurring_freq" => $order['billing_model']['description'],
-                    "prod_id" => $order['product_id'],
-                    "sub_total" => $order_data['totals_breakdown']['subtotal'],
-                    "tax" => $order_data['totals_breakdown']['tax'],
-                    "discount" => $order_data['coupon_discount_amount'],
-                    "product_name" => $order['name'],
-                    "quantity" => $order_data['main_product_quantity'],
-                    "price" => $order['price'],
-                    "order_date" => date("F j, Y", strtotime($order['time_stamp'])),
-                    //"order_date" =>date("F j, Y", strtotime($order_data['acquisition_date'])), 
-                    "ship_amount" => $order_data['shipping_amount'],
-                    "email" => $order_data['email_address'],
-                    "phone" => $order_data['customers_telephone'],
-                    "add1" => $order_data['shipping_street_address'],
-                    "add2" => $order_data['shipping_street_address2'],
-                    "pin" => $order_data['billing_postcode'],
-                    "state" => $order_data['billing_state'],
-                    "country" => $order_data['billing_country'],
-                    "status" => $order_status,
-                    "total_price" => $order_data['totals_breakdown']['total'] ,
-                    "status" => $order_status       
-                ];
+                $prod_id = $order['product_id'];
+                if($prod_id >= 55 && $prod_id <= 106){
+
+                    $orderRecords[] = [
+                        "key" => $key+1 ,
+                        "order_id" => $order_data['order_id'],
+                        "recurring_date" => $order['recurring_date'],
+                        "subscription_id" => $order['subscription_id'],
+                        "recurring_freq" => $order['billing_model']['description'],
+                        "prod_id" => $order['product_id'],
+                        "sub_total" => $order_data['totals_breakdown']['subtotal'],
+                        "tax" => $order_data['totals_breakdown']['tax'],
+                        "discount" => $order_data['coupon_discount_amount'],
+                        "product_name" => $order['name'],
+                        "quantity" => $order_data['main_product_quantity'],
+                        "price" => $order['price'],
+                        "order_date" => date("F j, Y", strtotime($order['time_stamp'])),
+                        //"order_date" =>date("F j, Y", strtotime($order_data['acquisition_date'])), 
+                        "ship_amount" => $order_data['shipping_amount'],
+                        "email" => $order_data['email_address'],
+                        "phone" => $order_data['customers_telephone'],
+                        "add1" => $order_data['shipping_street_address'],
+                        "add2" => $order_data['shipping_street_address2'],
+                        "pin" => $order_data['billing_postcode'],
+                        "state" => $order_data['billing_state'],
+                        "country" => $order_data['billing_country'],
+                        "status" => $order_status,
+                        "total_price" => $order_data['totals_breakdown']['total'] ,
+                        "status" => $order_status       
+                    ];
+                }
 
             }
 
