@@ -13,7 +13,7 @@ Go through the `webserver.config` folder where you will get details about deploy
 - **JSON/REST API v2:-** https://developer-v2.sticky.io
 
 ## Features
-- **Member Creation :-** upon order placad on the main site member is created and email with login credentials and member portal link is sent.
+- **Member Creation :-** Upon order placad on the main site, member is created and an email is sent to user with login credentials and member portal link.
 - **Subscription Management:-** View, edit, and adjust subscription dates and frequencies.​
 - **Order Management:-** Monitor and track subscription-based orders.​
 - **Profile Management:-** Update and manage personal information.​
